@@ -17,8 +17,9 @@ import urllib
 import cv2
 
 headers = {
-    "authorization": st.secrets["auth_token"],
-    "content-type": "application/json"
+    st.write("DB username:", st.secrets["db_username"]),
+    st.write("DB password:", st.secrets["db_password"]),
+    st.write("My cool secrets:", st.secrets["my_cool_secrets"]["things_i_like"])
 }
 
 st.set_page_config(
