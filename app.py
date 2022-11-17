@@ -15,12 +15,6 @@ import numpy as np
 import pandas as pd
 import urllib
 
-headers = {
-    st.write("DB username:", st.secrets["db_username"]),
-    st.write("DB password:", st.secrets["db_password"]),
-    st.write("My cool secrets:", st.secrets["my_cool_secrets"]["things_i_like"])
-}
-
 st.set_page_config(
     page_title="Handwritten Text Recognition App",
     page_icon="✨",
@@ -28,11 +22,22 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+headers = {
+    st.write("DB username:", st.secrets["db_username"]),
+    st.write("DB password:", st.secrets["db_password"]),
+    st.write("My cool secrets:", st.secrets["my_cool_secrets"]["things_i_like"])
+}
+
 st.sidebar.subheader("Input")
 models_list = ["TrOCR","MEDI-TrOCR", "VGG16", "VGG19", "Inception", "Xception", "ResNet"]
 network = st.sidebar.selectbox("Select the Model", models_list)
 
 
+headers = {
+    st.write("DB username:", st.secrets["db_username"]),
+    st.write("DB password:", st.secrets["db_password"]),
+    st.write("My cool secrets:", st.secrets["my_cool_secrets"]["things_i_like"])
+}
 MODELS = {
     "TrOCR": TrOCRPreTrainedModel,
     "MEDI-TrOCR": TrOCRPreTrainedModel,
