@@ -1,0 +1,10 @@
+streamlit
+pandas
+opencv_contrib_python
+numpy
+h5py
+spacy
+tensorflow
+transformers
+torch
+Pillow
