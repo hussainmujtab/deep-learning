@@ -1,6 +1,6 @@
 streamlit
 pandas
-opencv_contrib_python
+opencv-python
 numpy
 h5py
 spacy
