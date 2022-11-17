@@ -75,8 +75,8 @@ if uploaded_file:
             model = VisionEncoderDecoderModel.from_pretrained(model_name)
             processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-str")
             return (model)
-        model = load_model("F:/checkpoint-2400/")
-        #model = TrOCRProcessor.from_pretrained("F:/checkpoint-2400/")
+        model = load_model("https://drive.google.com/drive/folders/16Gx7x1gztvDsXksMEkRiGXixB7z8w73S?usp=sharing/")
+        
         image = Image.open(BytesIO(bytes_data))
 
         image = image.convert("RGB")
