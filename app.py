@@ -14,7 +14,6 @@ from PIL import Image
 import numpy as np
 import pandas as pd
 import urllib
-import cv2
 
 headers = {
     st.write("DB username:", st.secrets["db_username"]),
