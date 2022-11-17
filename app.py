@@ -16,6 +16,11 @@ import pandas as pd
 import urllib
 import cv2
 
+headers = {
+    "authorization": st.secrets["auth_token"],
+    "content-type": "application/json"
+}
+
 st.set_page_config(
     page_title="Handwritten Text Recognition App",
     page_icon="✨",
