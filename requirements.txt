@@ -8,3 +8,4 @@ tensorflow
 transformers
 torch
 Pillow
+cv2
