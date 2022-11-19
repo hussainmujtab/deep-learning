@@ -4,7 +4,6 @@ opencv-python
 numpy
 h5py
 spacy
-tensorflow==2.2.0
 upgrade protobuf
 transformers
 torch
