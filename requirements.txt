@@ -1,3 +1,4 @@
+tensorflow:latest-gpu-jupyter
 streamlit
 pandas
 opencv-python
