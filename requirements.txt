@@ -5,7 +5,7 @@ numpy
 h5py
 spacy
 tensorflow==2.2.0
-protobuf-3.1.0-py2.py3-none-any.whl
+upgrade protobuf
 transformers
 torch
 Pillow
