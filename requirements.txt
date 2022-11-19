@@ -1,4 +1,5 @@
-tensorflow:latest-gpu-jupyter
+tensorflow
+protobuf = 3.19.0
 streamlit
 pandas
 opencv-python
