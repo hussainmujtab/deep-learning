@@ -1,4 +1,4 @@
-import tensorflow==2.2.0
+import tensorflow
 import transformers
 from tensorflow import keras
 from keras.applications import InceptionV3, Xception, VGG19, VGG16, ResNet50
