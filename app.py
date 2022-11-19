@@ -75,7 +75,7 @@ if uploaded_file:
             model = VisionEncoderDecoderModel.from_pretrained(model_name)
             processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-str")
             return (model)
-        model = load_model("https://drive.google.com/drive/folders/16Gx7x1gztvDsXksMEkRiGXixB7z8w73S?usp=sharing")
+        model = load_model("pytorch_model.bin")
         
         image = Image.open(BytesIO(bytes_data))
 
