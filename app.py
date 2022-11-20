@@ -20,12 +20,6 @@ def load_visual_encoder_decoder_model(model_name):
     model = VisionEncoderDecoderModel.from_pretrained(model_name)
     return model
 
-def ocr_image(processor, model, image):             
-    pixel_values = processor(image, return_tensors="pt").pixel_values
-    generated_ids = model.generate(pixel_values)
-    generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
-    return generated_text
-
 st.set_page_config(
     page_title="Handwritten Text Recognition App",
     page_icon="✨",
@@ -59,16 +53,23 @@ if uploaded_file:
     if network in ["TrOCR","MEDI-TrOCR"]:
         st.title("Handwritten Text Recognition")
         
+        processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-str")
+        
         if network == "TROCR":
             model = load_visual_encoder_decoder_model("microsoft/trocr-base-str")
         else:
             model = load_visual_encoder_decoder_model("checkpoint-2400")
-        processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-str")
-
+        
         image = Image.open(BytesIO(bytes_data))
         image = image.convert("RGB")
-          
-        ocr_text = ocr_image(image, processor, model)
+        
+        def ocr_image(processor, model, image):
+            pixel_values = processor(image, return_tensors="pt").pixel_values
+            generated_ids = model.generate(pixel_values)
+            generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
+            return generated_text
+        
+        ocr_text = ocr_image(image)
 
         st.image(bytes_data, caption=ocr_text)
         st.success("Handwritten Text Recognition Completed")  
