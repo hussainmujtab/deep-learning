@@ -1,5 +1,6 @@
+protobuf==3.19.1
+causalimpact
 tensorflow
-protobuf ~= 3.19.0
 streamlit
 pandas
 opencv-python
