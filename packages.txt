@@ -2,8 +2,8 @@ build-essential
 cmake
 unzip
 pkg-config
-gcc-6
-g++-6
+#gcc-6
+#g++-6
 libgl1-mesa-glx
 libglib2.0-0
 libxmu-dev
