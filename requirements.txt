@@ -5,4 +5,3 @@ numpy
 h5py
 transformers
 torch
-Pillow
