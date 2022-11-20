@@ -1,8 +1,6 @@
-protobuf==4.21.0
-tensorflow==2.10.0
+tensorflow
 streamlit
 pandas
-opencv-python
 numpy
 h5py
 transformers
