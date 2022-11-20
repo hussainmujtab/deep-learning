@@ -1,6 +1,4 @@
-grpcio-tools>=1.44.0
-protobuf==3.19.1
-causalimpact
+protobuf==3.2.0
 tensorflow
 streamlit
 pandas
