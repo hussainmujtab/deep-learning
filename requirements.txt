@@ -5,3 +5,5 @@ numpy
 h5py
 transformers
 torch
+opencv_contrib_python
+pillow
