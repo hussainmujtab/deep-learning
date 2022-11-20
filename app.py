@@ -15,6 +15,17 @@ import numpy as np
 import pandas as pd
 import urllib
 
+@st.cache(allow_output_mutation=True)
+def load_visual_encoder_decoder_model(model_name):
+    model = VisionEncoderDecoderModel.from_pretrained(model_name)
+    return model
+
+def ocr_image(processor, model, image):             
+    pixel_values = processor(image, return_tensors="pt").pixel_values
+    generated_ids = model.generate(pixel_values)
+    generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
+    return generated_text
+
 st.set_page_config(
     page_title="Handwritten Text Recognition App",
     page_icon="✨",
@@ -45,53 +56,24 @@ if uploaded_file:
     inputShape = (224, 224)
     
                  
-    if network == ("TrOCR"):
+    if network in ["TrOCR","MEDI-TrOCR"]:
         st.title("Handwritten Text Recognition")
-        @st.cache(allow_output_mutation=True)
-        def load_model(model_name):
-            model = VisionEncoderDecoderModel.from_pretrained(model_name)
-            processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-str")
-            return (model)
-        model = load_model("microsoft/trocr-base-str")
-        image = Image.open(BytesIO(bytes_data))
-
-        image = image.convert("RGB")
-        processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-str")
-        def ocr_image(image):             
-            pixel_values = processor(image, return_tensors="pt").pixel_values
-            generated_ids = model.generate(pixel_values)
-            generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
-            return generated_text
-    
-        ocr_text = ocr_image(image)
-
-        st.image(bytes_data, caption=ocr_text)
-        st.success("Handwritten Text Recognition Completed")
-        #model = TrOCRProcessor.from_pretrained("F:/checkpoint-2400/")
-    elif network == ("MEDI-TrOCR"):
-        st.title("Handwritten Text Recognition")
-        @st.cache(allow_output_mutation=True)
-        def load_model(model_name):
-            model = VisionEncoderDecoderModel.from_pretrained(model_name)
-            processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-str")
-            return (model)
-        model = load_model("pytorch_model.bin")
         
-        image = Image.open(BytesIO(bytes_data))
-
-        image = image.convert("RGB")
+        if network == "TROCR":
+            model = load_visual_encoder_decoder_model("microsoft/trocr-base-str")
+        else:
+            model = load_visual_encoder_decoder_model("checkpoint-2400")
         processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-str")
-        def ocr_image(image):             
-            pixel_values = processor(image, return_tensors="pt").pixel_values
-            generated_ids = model.generate(pixel_values)
-            generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
-            return generated_text
-    
-        ocr_text = ocr_image(image)
+
+        image = Image.open(BytesIO(bytes_data))
+        image = image.convert("RGB")
+          
+        ocr_text = ocr_image(image, processor, model)
 
         st.image(bytes_data, caption=ocr_text)
-        st.success("Handwritten Text Recognition Completed")
-    elif network in ("VGG16", "VGG19", "ResNet"):
+        st.success("Handwritten Text Recognition Completed")  
+    
+    elif network in ["VGG16", "VGG19", "ResNet"]:
         st.title(f"Image Classification from {network} Model")
         preprocess = imagenet_utils.preprocess_input
         Network = MODELS[network]
@@ -112,7 +94,7 @@ if uploaded_file:
                 predictions[0], columns=["Network", "Classification", "Confidence"]
             )
         )
-    elif network in ("Inception", "Xception"):
+    elif network in ["Inception", "Xception"]:
         st.title(f"Image Classification from {network} Model")
         inputShape = (299, 299)
         preprocess = imagenet_utils.preprocess_input

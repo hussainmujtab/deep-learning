@@ -6,3 +6,4 @@ h5py
 transformers
 torch
 Pillow
+protobuf=3.20.1
