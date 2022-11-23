@@ -7,4 +7,3 @@ transformers
 torch
 opencv_contrib_python
 pillow
-cv2
