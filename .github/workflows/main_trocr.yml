@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'trocr'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A6538661009B4791ABCCF7FAB45A948A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D6342506F1B1453398BC51321F12ECA9 }}
